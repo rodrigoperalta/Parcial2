@@ -79,4 +79,5 @@ public class HUDManager : MonoBehaviour {
     {
         time = (int)_time;
     }
+    
 }

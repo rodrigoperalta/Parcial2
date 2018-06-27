@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 4382524500491422}
   - component: {fileID: 61306004409468588}
   - component: {fileID: 114705825823228490}
+  - component: {fileID: 50475143039823768}
   m_Layer: 0
   m_Name: LandingPart
   m_TagString: Untagged
@@ -76,6 +77,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50475143039823768
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1931503706872634}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!50 &50958797739363564
 Rigidbody2D:
   serializedVersion: 4
@@ -209,8 +230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 10
   rotationSpeed: 20
-  fireParticle: {fileID: 0}
-  fuel: 5000
 --- !u!114 &114705825823228490
 MonoBehaviour:
   m_ObjectHideFlags: 1

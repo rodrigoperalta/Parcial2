@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
@@ -9,37 +10,28 @@ public class PauseManager : MonoBehaviour
     public GameObject pauseMenuScreen;
     public GameObject landingMenuScreen;
     public GameObject lostMenuScreen;
-    public static bool isPaused;
+    public Text scoreT;
+    public static bool  isPaused;
     public bool hasLanded;
     public bool hasCrushed;
+    public int score;
 
-   public static PauseManager Get()
+    public static PauseManager Get()
     {
         return pauseManager;
     }
 
-    void Start()
+    void Awake()
     {
         pauseManager = this;
     }
-
-    // Update is called once per frame
+        
     void Update()
     {
-        
-        /*if (Time.timeScale == 0)
-        {
-            Debug.Log("time 0");
-        }
-        if (Time.deltaTime == 0)
-        {
-            Debug.Log("dtime 0");
-        }*/
-        
         if (isPaused == true)
-        {            
+        {
             pauseMenuScreen.SetActive(true);
-            Time.timeScale = 0f;
+            Time.timeScale = 0f;            
         }
         else
         {
@@ -49,8 +41,9 @@ public class PauseManager : MonoBehaviour
 
         if (hasLanded)
         {
+            scoreT.text = "Score: " + LevelManager.Get().ReturnScore();
             landingMenuScreen.SetActive(true);
-            Time.timeScale = 0f;
+            Time.timeScale = 0f;            
         }
         else
         {
@@ -60,20 +53,15 @@ public class PauseManager : MonoBehaviour
 
         if (hasCrushed)
         {
+            scoreT.text = "Score: " + LevelManager.Get().ReturnScore();
             lostMenuScreen.SetActive(true);
-            Time.timeScale = 0f;
+            Time.timeScale = 0f;            
         }
         else
         {
             lostMenuScreen.SetActive(false);
             Time.timeScale = 1f;
         }
-
-    }
-
-    public void Resume()
-    {
-        isPaused = false;
     }
 
     public void QuitToMainMenu()
@@ -81,28 +69,50 @@ public class PauseManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void NextLevel()
+    {
+        LevelManager.Get().NextLevel();
+    }
+
+    public bool GetPause()
+    {
+        return isPaused;
+    }    
+
+    public bool GetHasLanded()
+    {
+        return hasLanded;
+    }
+
+    public bool GetHasCrushed()
+    {
+        return hasCrushed;
+    }    
+
     public void EnterPause()
     {
-        isPaused = true;        
+        isPaused = true;
     }
 
     public void ExitPause()
     {
         isPaused = false;
-    }
-
-    public void NextLevel()
-    {
-        LevelManager.Get().NextLevel();
-    }
+    }    
 
     public void Landed()
     {
         hasLanded = true;
     }
 
+    public void TurnOffLanded()
+    {
+        hasLanded = false;
+    }
+
     public void Crushed()
     {
         hasCrushed = true;
     }
+
+   
 }
