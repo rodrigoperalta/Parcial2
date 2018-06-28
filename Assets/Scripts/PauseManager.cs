@@ -11,10 +11,13 @@ public class PauseManager : MonoBehaviour
     public GameObject landingMenuScreen;
     public GameObject lostMenuScreen;
     public Text scoreT;
+    public Text scoreT2;
+    public Text highScoreT;
+    public Text highScoreT2;
     public static bool  isPaused;
     public bool hasLanded;
-    public bool hasCrushed;
-    public int score;
+    public bool hasCrushed;    
+    public int highScore;
 
     public static PauseManager Get()
     {
@@ -37,15 +40,16 @@ public class PauseManager : MonoBehaviour
         if (hasLanded)
         {
             scoreT.text = "Score: " + LevelManager.Get().ReturnScore();
-            landingMenuScreen.SetActive(true);
-            ;            
+            highScoreT.text = "HighScore: " + LevelManager.Get().ReturnHighScore();
+            landingMenuScreen.SetActive(true);                        
         }
         else       
             landingMenuScreen.SetActive(false);       
 
         if (hasCrushed)
         {
-            scoreT.text = "Score: " + LevelManager.Get().ReturnScore();
+            scoreT2.text = "Score: " + LevelManager.Get().ReturnScore();
+            highScoreT2.text = "HighScore: " + LevelManager.Get().ReturnHighScore();
             lostMenuScreen.SetActive(true);
                         
         }
@@ -102,6 +106,8 @@ public class PauseManager : MonoBehaviour
     {
         hasCrushed = true;
     }
+
+   
 
    
 }

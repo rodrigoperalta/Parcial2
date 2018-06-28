@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager levelManager;
     private int score;
+    private int highScore;
     public int fuel;
     private float time;
     private float altitude;
@@ -31,6 +32,7 @@ public class LevelManager : MonoBehaviour
         level = 1;
         MakeThisTheOnlyGameManager();
         fuel = 5000;
+        highScore = PlayerPrefs.GetInt("HighScore");
     }
 
     void Update()
@@ -44,6 +46,21 @@ public class LevelManager : MonoBehaviour
         HUDManager.Get().GetTime(time);
         Lose();
     }
+
+    public void SetHighScore()
+    {
+        if (score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("HighScore", highScore);
+        }
+    }
+
+    public int  ReturnHighScore()
+    {
+        return highScore;
+    }
+     
 
     public void Lose() //Lose condition because of fuel
     {
@@ -95,11 +112,13 @@ public class LevelManager : MonoBehaviour
     public void LandedScreen() //Plays landed screen
     {
         PauseManager.Get().Landed();
+        SetHighScore();
     }
 
     public void CrushedScreen() //Plays crushed screen
     {
         PauseManager.Get().Crushed();
+        SetHighScore();
     }
 
     public void NextLevel() //Sets up loading screen
