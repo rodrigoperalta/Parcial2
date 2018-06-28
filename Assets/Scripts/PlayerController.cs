@@ -43,17 +43,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) //Players collisions
     {
-        if (collision.gameObject.tag == "LandingZone")
-        {
-            LevelManager.Get().CrushedScreen();
-            Debug.Log("Player landingzone");
-        }
+        if (collision.gameObject.tag == "LandingZone")        
+            LevelManager.Get().CrushedScreen();        
 
-        if (collision.gameObject.tag == "Terrain")
-        {
-            LevelManager.Get().CrushedScreen();
-            Debug.Log("Player Terrain");
-        }
+        if (collision.gameObject.tag == "Terrain")        
+            LevelManager.Get().CrushedScreen();        
 
         if (collision.gameObject.tag == "CameraZoomCheck")
         {
