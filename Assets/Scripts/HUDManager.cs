@@ -8,22 +8,22 @@ public class HUDManager : MonoBehaviour {
     private static HUDManager hUDManager;
     private float time;
     private int altitude;
-    private int hVel;
-    private int vVel;
+    private int hVel; //Horizontal Velocity
+    private int vVel; //Vertical velocity
     private int score;
     public Text scoreT;
     public Text fuelT;
     public Text timeT;
     public Text altitudeT;
-    public Text hVelT;
-    public Text vVelT;
+    public Text hVelT; //Horizontal Velocity
+    public Text vVelT; //Vertical velocity
     public int displayMultiplier;
 
     public static HUDManager Get()
     {
         return hUDManager;
     }
-    // Use this for initialization
+    
     void Start () {
         scoreT.text = "Score: " + score.ToString();
         fuelT.text = "Fuel: " + 100.ToString();
@@ -38,14 +38,18 @@ public class HUDManager : MonoBehaviour {
     {
         hUDManager = this;
     }   
-
-    // Update is called once per frame
+    
     void Update () {
+        SetTexts();
+    }
+
+    private void SetTexts() //Keeps texts updated
+    {
         altitudeT.text = "Altitude: " + altitude.ToString();
         hVelT.text = "Horizontal Velocity: " + hVel.ToString();
         vVelT.text = "Vertical Velocity: " + vVel.ToString();
         scoreT.text = "Score: " + score.ToString();
-        timeT.text = "Time: " + time.ToString();       
+        timeT.text = "Time: " + time.ToString();
     }
 
     public void GetHVel(float _hVel)
@@ -54,16 +58,14 @@ public class HUDManager : MonoBehaviour {
     }
 
     public void GetAltitude(float _alt)
-    {
-        
+    {        
         altitude = (int)(_alt * displayMultiplier);
     }
 
     public void GetVVel(float _vVel)
     {
         vVel = (int)(_vVel * displayMultiplier);
-    }
-    
+    }    
 
     public void GetFuel(int _fuel)
     {        

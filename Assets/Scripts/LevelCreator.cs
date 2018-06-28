@@ -12,10 +12,5 @@ public class LevelCreator : MonoBehaviour {
             int n = Random.Range(0, templates.Length);
             Instantiate(templates[n], pos, Quaternion.identity);
         }
-    }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }	
 }

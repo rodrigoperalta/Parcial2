@@ -28,48 +28,37 @@ public class PauseManager : MonoBehaviour
         
     void Update()
     {
-        if (isPaused == true)
-        {
+        if (isPaused == true)        
             pauseMenuScreen.SetActive(true);
-            Time.timeScale = 0f;            
-        }
-        else
-        {
-            pauseMenuScreen.SetActive(false);
-            Time.timeScale = 1f;
-        }
+        
+        else        
+            pauseMenuScreen.SetActive(false);        
 
         if (hasLanded)
         {
             scoreT.text = "Score: " + LevelManager.Get().ReturnScore();
             landingMenuScreen.SetActive(true);
-            Time.timeScale = 0f;            
+            ;            
         }
-        else
-        {
-            landingMenuScreen.SetActive(false);
-            Time.timeScale = 1f;
-        }
+        else       
+            landingMenuScreen.SetActive(false);       
 
         if (hasCrushed)
         {
             scoreT.text = "Score: " + LevelManager.Get().ReturnScore();
             lostMenuScreen.SetActive(true);
-            Time.timeScale = 0f;            
+                        
         }
-        else
-        {
-            lostMenuScreen.SetActive(false);
-            Time.timeScale = 1f;
-        }
+        else        
+            lostMenuScreen.SetActive(false);        
     }
 
-    public void QuitToMainMenu()
+    public void QuitToMainMenu() //Loads Main Menu
     {
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void NextLevel()
+    public void NextLevel() //Loads loading screen
     {
         LevelManager.Get().NextLevel();
     }
@@ -89,27 +78,27 @@ public class PauseManager : MonoBehaviour
         return hasCrushed;
     }    
 
-    public void EnterPause()
+    public void EnterPause() //Pauses
     {
         isPaused = true;
     }
 
-    public void ExitPause()
+    public void ExitPause() //Unpauses
     {
         isPaused = false;
     }    
 
-    public void Landed()
+    public void Landed() //Player has landed
     {
         hasLanded = true;
     }
 
-    public void TurnOffLanded()
+    public void TurnOffLanded() //Turns off landing variable
     {
         hasLanded = false;
     }
 
-    public void Crushed()
+    public void Crushed() //Player has crushed
     {
         hasCrushed = true;
     }

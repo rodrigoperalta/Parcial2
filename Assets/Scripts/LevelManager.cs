@@ -11,8 +11,8 @@ public class LevelManager : MonoBehaviour
     public int fuel;
     private float time;
     private float altitude;
-    private float hVel;
-    private float vVel;
+    private float hVel; //Horizontal Velocity
+    private float vVel; //Vertical Velocity
     private int level;
 
 
@@ -45,23 +45,20 @@ public class LevelManager : MonoBehaviour
         Lose();
     }
 
-    public void Lose()
+    public void Lose() //Lose condition because of fuel
     {
         if (fuel <= 0)
             PauseManager.Get().Crushed();
-
     }
     public void Kill()
     {
         Destroy(this);
     }
 
-    public void AddTime()
+    public void AddTime() //If not paused, adds time
     {
-        if (PauseManager.Get().GetPause() == false && PauseManager.Get().GetHasLanded() == false && PauseManager.Get().GetHasCrushed() == false)
-        {
-            time = time + 1 * Time.deltaTime;
-        }
+        if (PauseManager.Get().GetPause() == false && PauseManager.Get().GetHasLanded() == false && PauseManager.Get().GetHasCrushed() == false)        
+            time = time + 1 * Time.deltaTime;        
     }
 
     public void GetHVel(float _hVel)
@@ -95,17 +92,17 @@ public class LevelManager : MonoBehaviour
         fuel--;
     }       
 
-    public void LandedScreen()
+    public void LandedScreen() //Plays landed screen
     {
         PauseManager.Get().Landed();
     }
 
-    public void CrushedScreen()
+    public void CrushedScreen() //Plays crushed screen
     {
         PauseManager.Get().Crushed();
     }
 
-    public void NextLevel()
+    public void NextLevel() //Sets up loading screen
     {
         level++;
         ScreenLevel.Get().LoadingScreenOnOff();
@@ -115,14 +112,14 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(LoadLevelAfterTime(3));
     }
 
-    IEnumerator LoadLevelAfterTime(float time)
+    IEnumerator LoadLevelAfterTime(float time) // Time to wait between loading screen and next level
     {       
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene("Game");
         ScreenLevel.Get().LoadingScreenOnOff();
     }
 
-    public void AddScore()
+    public void AddScore() //Adds score and lets HUD know
     {
         score = score + 100;
         HUDManager.Get().GetScore(score);
@@ -133,7 +130,7 @@ public class LevelManager : MonoBehaviour
         return score;
     }
 
-    void MakeThisTheOnlyGameManager()
+    void MakeThisTheOnlyGameManager() //Singleton
     {
         if (levelManager == null)
         {
@@ -142,12 +139,8 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            if (levelManager != this)
-            {
-                Destroy(gameObject);
-            }
+            if (levelManager != this)           
+                Destroy(gameObject);            
         }
-
-
     }
 }

@@ -7,8 +7,8 @@ public class ScreenLevel : MonoBehaviour {
 
     public static ScreenLevel screenLevel;
     public GameObject levelScreen;
-    private int level;
     public Text levelT;
+    private int level;    
     public bool onLoadingScreen;
 
     public static ScreenLevel Get()
@@ -22,13 +22,13 @@ public class ScreenLevel : MonoBehaviour {
         onLoadingScreen = false;
     }
 
-    public void InLoadingScreen()
+    public void InLoadingScreen() //Enters Loading screen
     {
         levelT.text = "Level " + level;
         levelScreen.SetActive(true);
     }
 
-    public void OffLoadingScreen()
+    public void OffLoadingScreen() //Exits loading screen
     {
         levelScreen.SetActive(false);
     }
@@ -38,7 +38,7 @@ public class ScreenLevel : MonoBehaviour {
         level = _level;
     }
 
-    public void LoadingScreenOnOff()
+    public void LoadingScreenOnOff() //Switches between loading screen on and off
     {
         onLoadingScreen = !onLoadingScreen;
     }

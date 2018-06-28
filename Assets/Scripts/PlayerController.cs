@@ -20,10 +20,9 @@ public class PlayerController : MonoBehaviour
         LevelManager.Get().GetHVel(rig.velocity.x);        
         LevelManager.Get().GetAltitude(this.transform.position.y);
         CameraZoom.Get().GetPlayerPos(this.transform.position);
-        if (PauseManager.Get().GetPause() == true || PauseManager.Get().GetHasLanded() == true || PauseManager.Get().GetHasCrushed() == true || ScreenLevel.Get().GetOnLoadingScreen() == true)
-        {
-            rig.simulated = false;
-        }
+        //Player movement and conditions when to move
+        if (PauseManager.Get().GetPause() == true || PauseManager.Get().GetHasLanded() == true || PauseManager.Get().GetHasCrushed() == true || ScreenLevel.Get().GetOnLoadingScreen() == true)        
+            rig.simulated = false;       
         else
         {
             rig.simulated = true;
@@ -42,7 +41,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //Players collisions
     {
         if (collision.gameObject.tag == "LandingZone")
         {
